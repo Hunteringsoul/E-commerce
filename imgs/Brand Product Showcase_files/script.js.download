@@ -1,0 +1,172 @@
+const products = [
+    {
+        name: "Nike Air Max",
+        brand: "Nike",
+        price: "₹5000",
+        image: "imgs/nike_airmax.jpg"
+    },
+    {
+        name: "Adidas Ultraboost",
+        brand: "Adidas",
+        price: "₹7000",
+        image: "imgs/adidas_Shoes.jpg"
+    },
+    {
+        name: "Puma Running Shoes",
+        brand: "Puma",
+        price: "₹4500",
+        image: "imgs/puma.jpg"
+    },
+    {
+        name: "Nike Sports Jacket",
+        brand: "Nike",
+        price: "₹3500",
+        image: "imgs/nike_jacket.jpg"
+    },
+    {
+        name: "Nike Dunk Low",
+        brand: "Nike",
+        price: "₹6000",
+        image: "imgs/nike_dunk.jpg"
+    },
+    {
+        name: "Nike Air Force 1",
+        brand: "Nike",
+        price: "₹5500",
+        image: "imgs/nike_airforce1.jpg"
+    },
+    {
+        name: "Nike Basketball Shoes",
+        brand: "Nike",
+        price: "₹8000",
+        image: "imgs/nike_basketball_shoes.jpg"
+    },
+    {
+        name: "Adidas Stan Smith",
+        brand: "Adidas",
+        price: "₹4500",
+        image: "imgs/adidas_Shoes.jpg"
+    },
+    {
+        name: "Adidas Yeezy Boost",
+        brand: "Adidas",
+        price: "₹12000",
+        image: "imgs/colorful_sneakers.jpg"
+    },
+    {
+        name: "Adidas Gazelle",
+        brand: "Adidas",
+        price: "₹5000",
+        image: "imgs/adidas_Shoes.jpg"
+    },
+    {
+        name: "Adidas Running Shorts",
+        brand: "Adidas",
+        price: "₹2500",
+        image: "imgs/colorful_sneakers.jpg"
+    },
+    {
+        name: "Puma Suede Classic",
+        brand: "Puma",
+        price: "₹4000",
+        image: "imgs/puma.jpg"
+    },
+    {
+        name: "Puma RS-X",
+        brand: "Puma",
+        price: "₹6500",
+        image: "imgs/puma.jpg"
+    },
+    {
+        name: "Puma Training Shoes",
+        brand: "Puma",
+        price: "₹4800",
+        image: "imgs/colorful_sneakers.jpg"
+    },
+    {
+        name: "Puma Track Jacket",
+        brand: "Puma",
+        price: "₹3200",
+        image: "imgs/puma.jpg"
+    },
+    {
+        name: "Nike Zoom Pegasus",
+        brand: "Nike",
+        price: "₹7500",
+        image: "imgs/nike_latest.jpg"
+    },
+    {
+        name: "Adidas Originals Hoodie",
+        brand: "Adidas",
+        price: "₹4000",
+        image: "imgs/hoddies.jpg"
+    },
+    {
+        name: "Puma Speedcat",
+        brand: "Puma",
+        price: "₹5500",
+        image: "imgs/puma.jpg"
+    },
+    {
+        name: "Nike Cortez",
+        brand: "Nike",
+        price: "₹4500",
+        image: "imgs/nike_unsplash.jpg"
+    },
+    {
+        name: "Adidas Samba",
+        brand: "Adidas",
+        price: "₹4800",
+        image: "imgs/adidas_Shoes.jpg"
+    },
+    {
+        name: "Puma Future Rider",
+        brand: "Puma",
+        price: "₹5200",
+        image: "imgs/puma.jpg"
+    }
+];
+
+function displayProducts(filteredProducts) {
+    const container = document.getElementById("productContainer");
+    container.innerHTML = "";
+
+    filteredProducts.forEach((product, index) => {
+        container.innerHTML += `
+            <div class="product-card fade-in" style="animation-delay:${index * 0.1}s">
+                <div class="image-wrapper">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <h3>${product.name}</h3>
+                <p>${product.price}</p>
+                <button class="shop-btn">Shop Now</button>
+            </div>
+        `;
+    });
+    
+}
+
+function filterProducts(brand) {
+    if (brand === "All") {
+        displayProducts(products);
+    } else {
+        const filtered = products.filter(product => product.brand === brand);
+        displayProducts(filtered);
+    }
+}
+
+function scrollToProducts() {
+    const productsSection = document.getElementById("products");
+    if (!productsSection) return;
+    productsSection.scrollIntoView({ behavior: "smooth", block: "end" });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Ensure products show up on initial load
+    displayProducts(products);
+
+    const heroBtn = document.querySelector(".hero-btn");
+    if (heroBtn) {
+        heroBtn.addEventListener("click", scrollToProducts);
+    }
+});
