@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up · Sportify</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="login-body">
+
+    <header class="navbar">
+        <div class="logo">Sportify</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#products">Products</a>
+        </nav>
+    </header>
+
+    <main class="login-container">
+        <div class="login-card">
+            <h1>Create Account</h1>
+            <p class="login-subtitle">Join Sportify and start shopping today</p>
+
+            <form id="signupForm" class="login-form" onsubmit="event.preventDefault(); handleSignup();">
+                <div class="form-field">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="At least 6 characters" required minlength="6">
+                </div>
+
+                <div class="form-field">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" placeholder="Re-enter password" required>
+                </div>
+
+                <div class="form-field">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <span>I agree to the <a href="#">Terms & Conditions</a></span>
+                    </label>
+                </div>
+
+                <button type="submit" class="login-btn">Create Account</button>
+            </form>
+
+            <div class="login-divider">
+                <span>or</span>
+            </div>
+
+            <button class="signup-btn" onclick="window.location.href='login.html'">Already have an account? Sign In</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

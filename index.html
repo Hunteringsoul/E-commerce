@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Brand Product Showcase</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+
+<body>
+
+
+    <header class="navbar">
+
+        <div class="logo">Sportify</div>
+    
+        <nav>
+            <a href="#">Home</a>
+            <a href="#products">Products</a>
+            <a href="#features">Features</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="navbar-right">
+            <div id="userMenu" class="user-menu" style="display: none;">
+                <span id="userName" class="user-name"></span>
+                <div class="user-dropdown">
+                    <a href="profile.html">My Profile</a>
+                    <a href="#" onclick="handleLogout(); return false;">Logout</a>
+                </div>
+            </div>
+            <button id="loginBtn" class="login-nav-btn" onclick="window.location.href='login.html'" style="display: none;">Login</button>
+            
+            <div class="search-container">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search products..." onkeyup="handleSearch(event)">
+                <span class="search-icon">🔍</span>
+            </div>
+            <button class="wishlist-icon" type="button" onclick="openWishlist()">
+                ❤️ <span id="wishlistCount">0</span>
+            </button>
+            <button class="cart-icon" type="button" onclick="openCart()">
+                🛒 <span id="cartCount">0</span>
+            </button>
+        </div>
+    
+    </header>
+    
+
+
+<!-- ✅ MAIN CONTENT WRAPPER -->
+<div id="mainContent">
+
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h2>Gear that keeps up with you</h2>
+
+            <p>Everyday sport shoes and clothing we’d actually wear to the gym, the track or a Sunday walk.</p>
+
+            <button class="hero-btn" type="button">
+
+                Browse products
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- Fashion & clothing strip -->
+    <section class="fashion-slider">
+        <div class="fashion-window">
+            <div class="fashion-track">
+                <article class="fashion-slide">
+                    <img src="imgs/nike_jacket.jpg" alt="Performance jackets">
+                    <div class="fashion-caption">
+                        <h3>Layer up for late runs</h3>
+                        <p>Lightweight jackets that don’t slow you down.</p>
+                    </div>
+                </article>
+
+                <article class="fashion-slide">
+                    <img src="imgs/hoddies.jpg" alt="Street style hoodies">
+                    <div class="fashion-caption">
+                        <h3>Off‑court hoodies</h3>
+                        <p>Easy layers for cafe hangs and post‑workout walks.</p>
+                    </div>
+                </article>
+
+                <article class="fashion-slide">
+                    <img src="imgs/colorful_sneakers.jpg" alt="Colorful sneakers">
+                    <div class="fashion-caption">
+                        <h3>Colorful sneakers</h3>
+                        <p>Add a bit of personality to everyday outfits.</p>
+                    </div>
+                </article>
+
+                <article class="fashion-slide">
+                    <img src="imgs/nike_latest.jpg" alt="Running fits">
+                    <div class="fashion-caption">
+                        <h3>Weekend run fits</h3>
+                        <p>Mix of performance and comfort for long miles.</p>
+                    </div>
+                </article>
+
+                <!-- duplicate slides for seamless loop -->
+                <article class="fashion-slide">
+                    <img src="imgs/nike_jacket.jpg" alt="Performance jackets">
+                    <div class="fashion-caption">
+                        <h3>Layer up for late runs</h3>
+                        <p>Lightweight jackets that don’t slow you down.</p>
+                    </div>
+                </article>
+
+                <article class="fashion-slide">
+                    <img src="imgs/hoddies.jpg" alt="Street style hoodies">
+                    <div class="fashion-caption">
+                        <h3>Off‑court hoodies</h3>
+                        <p>Easy layers for cafe hangs and post‑workout walks.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <h1 id="products">
+        Products we're excited about
+    </h1>
+
+    <div class="product-controls">
+        <div class="filters category-filters">
+            <button onclick="filterCategory('All')">All</button>
+            <button onclick="filterCategory('Shoes')">Shoes</button>
+            <button onclick="filterCategory('Clothing')">Clothing</button>
+        </div>
+
+        <div class="filters brand-filters">
+            <button onclick="filterProducts('All')">All</button>
+            <button onclick="filterProducts('Nike')">Nike</button>
+            <button onclick="filterProducts('Adidas')">Adidas</button>
+            <button onclick="filterProducts('Puma')">Puma</button>
+        </div>
+
+        <div class="sort-price-controls">
+            <label>Sort by:</label>
+            <select id="sortSelect" onchange="handleSort()">
+                <option value="default">Default</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="name">Name A-Z</option>
+            </select>
+            
+            <label>Price range:</label>
+            <div class="price-range">
+                <input type="number" id="minPrice" placeholder="Min" min="0" onchange="applyPriceFilter()">
+                <span>-</span>
+                <input type="number" id="maxPrice" placeholder="Max" min="0" onchange="applyPriceFilter()">
+            </div>
+        </div>
+    </div>
+
+    <!-- Recently Viewed Section -->
+    <section id="recentlyViewed" class="recently-viewed" style="display: none;">
+        <h2>Recently Viewed</h2>
+        <div id="recentlyViewedItems" class="recently-viewed-grid"></div>
+    </section>
+
+
+
+    <div class="product-container" id="productContainer"></div>
+
+
+
+</div>
+<section id="features" class="features">
+
+    <h2>Why Choose Us</h2>
+    <p class="features-subtitle">Everything on SPORTIFY is designed to make buying performance gear simple, reliable and fun.</p>
+    
+    <div class="feature-grid">
+    
+        <div class="feature">
+            <span class="feature-icon">🏅</span>
+            <h3>Premium Quality</h3>
+            <p>High performance products from trusted global brands, tested for real athletes.</p>
+        </div>
+        
+        <div class="feature">
+            <span class="feature-icon">⚡</span>
+            <h3>Fast Delivery</h3>
+            <p>Pan-India shipping with real‑time tracking so you always know where your order is.</p>
+        </div>
+        
+        <div class="feature">
+            <span class="feature-icon">🔒</span>
+            <h3>Secure Payments</h3>
+            <p>100% secure checkout with encrypted payment gateways and multiple payment options.</p>
+        </div>
+
+        <div class="feature">
+            <span class="feature-icon">🔁</span>
+            <h3>Easy Returns</h3>
+            <p>Hassle‑free returns on eligible products so you can try the perfect fit without worry.</p>
+        </div>
+
+        <div class="feature">
+            <span class="feature-icon">🎯</span>
+            <h3>Curated Collections</h3>
+            <p>Hand‑picked drops for runners, hoopers and gym lovers – no endless scrolling.</p>
+        </div>
+
+        <div class="feature">
+            <span class="feature-icon">🤝</span>
+            <h3>Local Support</h3>
+            <p>Friendly support team to help with sizing, orders and any issues you run into.</p>
+        </div>
+    
+    </div>
+    
+</section>
+    
+<!-- ✅ END MAIN CONTENT -->
+
+
+
+
+<!-- ✅ CART DRAWER OUTSIDE -->
+<div id="cartDrawer" class="cart-drawer">
+
+    <div class="cart-header">
+
+        <h2>Your Cart</h2>
+
+        <span onclick="closeCart()">✖</span>
+
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-footer">
+
+        <h3>Total: ₹<span id="cartTotal">0</span></h3>
+
+        <button onclick="goToCheckout()">Checkout</button>
+
+    </div>
+
+</div>
+
+
+
+
+<!-- Product Modal -->
+
+<div id="productModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <img id="modalImage">
+
+        <h3 id="modalTitle"></h3>
+
+        <p id="modalPrice"></p>
+
+    </div>
+
+</div>
+
+<!-- Quick View Modal -->
+
+<div id="quickViewModal" class="quick-view-modal">
+
+    <div class="quick-view-content">
+
+        <span class="close" onclick="closeQuickView()">&times;</span>
+
+        <div class="quick-view-body">
+
+            <img id="quickViewImage" class="quick-view-image">
+
+            <div class="quick-view-info">
+
+                <h3 id="quickViewTitle"></h3>
+
+                <p id="quickViewPrice" class="quick-view-price"></p>
+
+                <p id="quickViewBrand" class="quick-view-brand"></p>
+
+                <div class="quick-view-actions">
+
+                    <button class="shop-btn" onclick="addToCartFromQuickView()">Add to Cart</button>
+
+                    <button class="wishlist-btn" id="quickViewWishlistBtn" onclick="toggleWishlistFromQuickView()">❤️ Add to Wishlist</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Wishlist Drawer -->
+
+<div id="wishlistDrawer" class="wishlist-drawer">
+
+    <div class="wishlist-header">
+
+        <h2>Your Wishlist</h2>
+
+        <span onclick="closeWishlist()">✖</span>
+
+    </div>
+
+    <div id="wishlistItems" class="wishlist-items"></div>
+
+    <div class="wishlist-footer">
+
+        <p id="wishlistEmpty" class="wishlist-empty">Your wishlist is empty. Start adding items you love!</p>
+
+    </div>
+
+</div>
+
+<section class="testimonials">
+
+    <h2>What Our Customers Say</h2>
+
+    <div class="testimonial-carousel">
+
+        <button class="testimonial-arrow prev" type="button" aria-label="Previous testimonial">
+            &#10094;
+        </button>
+
+        <div class="testimonial-window">
+            <div class="testimonial-track">
+
+                <article class="testimonial-card">
+                    <img class="testimonial-avatar" src="https://images.pexels.com/photos/3760850/pexels-photo-3760850.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Rahul Sharma">
+                    <div class="testimonial-body">
+                        <p class="testimonial-quote">"Best sports website experience ever. The product quality and delivery speed are top-notch."</p>
+                        <h4>Rahul Sharma</h4>
+                        <span class="testimonial-role">Marathon Runner</span>
+                    </div>
+                </article>
+
+                <article class="testimonial-card">
+                    <img class="testimonial-avatar" src="https://images.pexels.com/photos/1552104/pexels-photo-1552104.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Aisha Verma">
+                    <div class="testimonial-body">
+                        <p class="testimonial-quote">"I found exactly the running shoes I needed. The filters make it super easy to browse."</p>
+                        <h4>Aisha Verma</h4>
+                        <span class="testimonial-role">Fitness Coach</span>
+                    </div>
+                </article>
+
+                <article class="testimonial-card">
+                    <img class="testimonial-avatar" src="https://images.pexels.com/photos/2735981/pexels-photo-2735981.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Karan Mehta">
+                    <div class="testimonial-body">
+                        <p class="testimonial-quote">"Clean design, smooth checkout and great deals on branded sportswear."</p>
+                        <h4>Karan Mehta</h4>
+                        <span class="testimonial-role">College Athlete</span>
+                    </div>
+                </article>
+
+                <article class="testimonial-card">
+                    <img class="testimonial-avatar" src="https://images.pexels.com/photos/7676409/pexels-photo-7676409.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Sneha Rao">
+                    <div class="testimonial-body">
+                        <p class="testimonial-quote">"Customer support was super helpful and my gear arrived earlier than expected."</p>
+                        <h4>Sneha Rao</h4>
+                        <span class="testimonial-role">Yoga Instructor</span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+
+        <button class="testimonial-arrow next" type="button" aria-label="Next testimonial">
+            &#10095;
+        </button>
+
+    </div>
+    
+</section>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" onclick="scrollToTop()" title="Back to top">
+        ↑
+    </button>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sportify</h3>
+                <p>Gear that keeps up with you.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <p>Get updates on new drops and deals.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); handleNewsletter();">
+                    <input type="email" id="newsletterEmail" placeholder="Your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: contact@sportify.com</p>
+            </div>
+        </div>
+        
+        <p class="footer-copyright">© 2026 All rights reserved</p>
+        
+    </footer>
+        
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

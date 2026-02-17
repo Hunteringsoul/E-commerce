@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout · Sportify</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="checkout-body">
+
+    <header class="navbar">
+        <div class="logo">Sportify</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#products">Products</a>
+        </nav>
+    </header>
+
+    <main class="checkout-page">
+
+        <h1 class="checkout-title">Checkout</h1>
+        <p class="checkout-subtitle">Review your cart and add your delivery details to place the order.</p>
+
+        <section class="checkout-layout">
+
+            <!-- Order summary -->
+            <div class="checkout-summary">
+                <h2>Your items</h2>
+                <div id="checkoutItems" class="checkout-items"></div>
+
+                <div class="checkout-total-row">
+                    <span>Total</span>
+                    <strong>₹<span id="checkoutTotal">0</span></strong>
+                </div>
+            </div>
+
+            <!-- Billing / address form -->
+            <form class="checkout-form" onsubmit="event.preventDefault(); placeOrder();">
+                <h2>Delivery details</h2>
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="name">Full name</label>
+                        <input id="name" type="text" placeholder="Rahul Sharma" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="phone">Phone</label>
+                        <input id="phone" type="tel" placeholder="+91 98765 43210" required>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="address">Address</label>
+                    <textarea id="address" rows="3" placeholder="House / flat, street, area" required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="city">City</label>
+                        <input id="city" type="text" placeholder="Bengaluru" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="pincode">Pincode</label>
+                        <input id="pincode" type="text" placeholder="560001" required>
+                    </div>
+                </div>
+
+                <h3>Payment</h3>
+                <div class="payment-options">
+                    <label>
+                        <input type="radio" name="payment" value="card" checked>
+                        Card / UPI
+                    </label>
+                    <label>
+                        <input type="radio" name="payment" value="cod">
+                        Cash on delivery
+                    </label>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="cardNumber">Card number</label>
+                        <input id="cardNumber" type="text" placeholder="1234 5678 9012 3456">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="expiry">Expiry</label>
+                        <input id="expiry" type="text" placeholder="MM/YY">
+                    </div>
+                    <div class="form-field">
+                        <label for="cvv">CVV</label>
+                        <input id="cvv" type="password" placeholder="***">
+                    </div>
+                </div>
+
+                <button type="submit" class="checkout-primary-btn">Place order</button>
+                <p class="checkout-note">By placing the order you agree to receive e‑mail and SMS updates about your delivery.</p>
+            </form>
+
+        </section>
+
+    </main>
+
+    <script src="./checkout.js"></script>
+</body>
+</html>
